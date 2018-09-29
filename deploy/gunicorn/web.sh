@@ -1,5 +1,7 @@
 
-PROJECT_PATH=/Users/xufengxu/git_pro/Collector/server
+PWD=$('pwd')
+ADD='/../../server'
+PROJECT_PATH=${PWD}${ADD}
 CONFROOT=./gunicorn.py
 
 cd $PROJECT_PATH
