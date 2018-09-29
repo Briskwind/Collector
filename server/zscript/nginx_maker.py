@@ -1,12 +1,20 @@
 """ 生成基本的nginx配置"""
+import os
 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "server.settings")
+import django
+
+from server.settings import BASE_DIR
+from zscript.gunicorn import bind_file
+
+django.setup()
 config = {
-    'sock_file': 'unix:/Users/xufengxu/git_pro/Collector/server/gunicorn.sock',
+    'sock_file': bind_file,
     'server_name': '127.0.0.1',
-    'web_root': '/Users/xufengxu/git_pro/Collector/server/',
-    'static_path': '/Users/xufengxu/git_pro/Collector/server/',
-    'access_log_path': '/Users/xufengxu/git_pro/Collector/server/logs/nginx.access.log',
-    'error_logpath': '/Users/xufengxu/git_pro/Collector/server/logs/nginx.error.log'
+    'web_root': BASE_DIR,
+    'static_path': os.path.join(BASE_DIR, 'static/'),
+    'access_log_path': os.path.join(BASE_DIR, 'logs/nginx.access.log'),
+    'error_logpath': os.path.join(BASE_DIR, 'logs/nginx.error.log')
 }
 
 template = """
