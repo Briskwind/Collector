@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+
+    <link rel="stylesheet" href="{% static 'plugin/bootstrap/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'plugin/dist/css/AdminLTE.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugin/dist/css/skins/_all-skins.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugin/plugin/blue.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugin/plugin/morris.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugin/plugin/jquery-jvectormap-1.2.2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugin/plugin/datepicker3.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugin/plugin/daterangepicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugin/plugin/bootstrap3-wysihtml5.min.css' %}"/>
+
+    <style>
+
+        .skin-blue .main-header .navbar {
+            background-color: #20222A;
+        }
+
+        .skin-blue .main-header .logo:hover {
+            background-color: #20222A;
+        }
+
+        .skin-blue .main-header .navbar .sidebar-toggle:hover {
+            background-color: #333;
+        }
+
+        .skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a {
+            color: #fff;
+            background: #272829b0;
+            border-left-color: #3c8dbc;
+        }
+
+        .skin-blue .sidebar-menu > li > .treeview-menu {
+            margin: 0 1px;
+            background: #333;
+        }
+
+        .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+            background-color: rgb(24, 25, 33);
+        }
+
+        .skin-blue .main-header .logo {
+            background-color: #20222A;
+            color: #fff;
+            border-bottom: 0 solid transparent;
+        }
+
+    </style>
+    {% block style %}
+
+    {% endblock %}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>后台管理</b></span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>豆瓣电影</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-angle-right"></i>电影列表</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i>电影详情</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>新闻资讯</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-angle-right"></i> 微博热搜</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> 百度热搜</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> 股票相关</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-th"></i> <span>父3</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-angle-right"></i> 子目录</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> 子目录</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> 子目录</a></li>
+                        </ul>
+                    </a>
+                </li>
+
+
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        {% block content %}
+
+
+        {% endblock %}
+
+    </div>
+
+
+    <div class="control-sidebar-bg"></div>
+</div>
+</body>
+
+
+
+{% block scripts %}
+
+{% endblock %}
+
+
+<script src="{% static 'plugin/bpjs/jquery-2.2.3.min.js' %} "></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="{% static 'plugin/bpjs/bootstrap.min.js' %} "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="{% static 'plugin/bpjs/morris.min.js' %} "></script>
+<script src="{% static 'plugin/bpjs/jquery.sparkline.min.js' %} "></script>
+<script src="{% static 'plugin/bpjs/jquery-jvectormap-1.2.2.min.js' %} "></script>
+
+<script src="{% static 'plugin/bpjs/jquery-jvectormap-world-mill-en.js' %} "></script>
+<script src="{% static 'plugin/bpjs/jquery.knob.js' %} "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+<script src="{% static 'plugin/bpjs/daterangepicker.js' %} "></script>
+<script src="{% static 'plugin/bpjs/bootstrap-datepicker.js' %} "></script>
+<script src="{% static 'plugin/bpjs/bootstrap3-wysihtml5.all.min.js' %} "></script>
+<script src="{% static 'plugin/bpjs/jquery.slimscroll.min.js' %} "></script>
+<script src="{% static 'plugin/bpjs/fastclick.js' %} "></script>
+<script src="{% static 'plugin/bpjs/app.min.js' %} "></script>
+
+{#<script src="{% static 'plugin/bpjs/dashboard.js' %} "></script>#}
+<script src="{% static 'plugin/bpjs/demo.js' %} "></script>
+
+<script>
+
+    var item = $('.treeview')
+    console.log(item)
+</script>
+
+</html>

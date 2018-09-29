@@ -1,0 +1,90 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}夕惕若，厉无咎{% endblock %}</title>
+
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static  'layui/css/layui.css' %} ">
+
+
+</head>
+
+
+{% block styles %}
+
+{% endblock %}
+<body>
+
+<nav id="ac-globalnav" class="flexbox">
+    <div class="ac-gn-content">
+
+        <ul class="ac-gn-list">
+            <li>
+                <a class="ac-gn-link " href="/">
+                    <span class="ac-gn-link-text">首页</span>
+                </a>
+            </li>
+            <li>
+                <a class="ac-gn-link " href="">
+                    <span class="ac-gn-link-text">登陆</span>
+                </a>
+            </li>
+
+
+            <li>
+                <a class="ac-gn-link" href="">
+                    <span class="ac-gn-link-text">GitBook</span>
+                </a>
+            </li>
+            <li>
+                <a class="ac-gn-link" href="">
+                    <span class="ac-gn-link-text">后台</span>
+                </a>
+            </li>
+            <li>
+                <a class="ac-gn-link " href="">
+                    <span class="ac-gn-link-text">关于我</span>
+                </a>
+            </li>
+
+
+        </ul>
+
+    </div>
+</nav>
+
+
+
+{% block main %}
+
+
+
+
+{% endblock %}
+
+
+</body>
+</html>
+<script src="{% static  'layui/layui.all.js' %}"></script>
+
+<script>
+    layui.use(['jquery', 'layer'], function () {
+        var $ = layui.$,
+            layer = layui.layer;
+
+        $('#index').append('hello jquery');
+    });
+
+
+</script>
+
+{% block scripts %}
+
+{% endblock %}
+
+
+

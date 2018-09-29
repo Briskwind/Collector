@@ -1,0 +1,113 @@
+{% extends "home/base.html" %}
+
+{% block title %}
+    关于我
+{% endblock title %}
+
+
+{% block styles %}
+    <style>
+
+        .line {
+            width: 100%;
+            margin: auto;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            float: left;
+            padding-top: 30px;
+
+        }
+
+        p {
+            font-size: 16px;
+            text-indent: 30px;
+            padding-top: 5px;
+        }
+
+        .name-center {
+            padding-top: 55px;
+            text-align: center;
+
+        }
+
+        .f-bg {
+            margin-top: 44px;
+            background: url('/static/images/flowerbk.png');
+            width: 100%;
+            min-height: 1000px;
+            background-size: 100% 100%;
+        }
+    </style>
+{% endblock styles %}
+{% block main %}
+
+
+
+    <main class="main f-bg">
+        <div style="width:61.8%;margin: auto">
+
+
+            <h2 class="name-center">BugMaker</h2>
+            <div class="line">
+                <h2>基本信息:</h2>
+
+            </div>
+
+            <div class="line">
+                <p>联系方式:realxufeng@gmail.com</p>
+
+
+            </div>
+
+
+            <div class="line">
+                <h2>技术栈:</h2>
+                <p>开发部署:Django、Rest framework、Nginx、Gunicorn、Pm2、Supervisor</p>
+                <p>容器:Docker</p>
+                <p>协同开发:Git、Git flow</p>
+
+            </div>
+
+
+            <div class="line">
+
+
+                <h2>工作经历:</h2>
+
+
+                <p>1、服务器迁移:将web业务从优刻整体迁移至阿里云。所涉及到相关技术：nginx、supervisor、elasticsearch、rsync。</p>
+                <p>2、Nginx日志分析:使用goaccess对应用web日志分析，查看资源请求、报错url等。</p>
+                <p>
+                    3、web日志分析:内网服务器搭建日志web，供开发人员查询线上各个服务的相关日志。实现方式:celery定时任务+scp定时拉去线上日志到内网，内网监听文件变化(watchdog)，读取最新数据到mongodb到不同collection，并django进行呈现。</p>
+                <p>4、定时备份线上数据库并且拉到本地。</p>
+                <p>5、内网搭建Gitlab、Gitlab Runner进行自动化测试：在内网搭建Gitlab供开发人员进行小项目的开发，搭建Gitlab
+                    Runner使用docker为executor进行代码提交后的自动化测试。</p>
+                <p>6、服务器监控 open falcon:使用小米开源open falcon进行服务器监控，后专用阿里云，使用阿里云自带的监控数据，设置阈值警报，邮件钉钉通知。</p>
+                <p>7、使用Docker搭建整体(网签)类生产环境搭建:Mysql、Rabbitmq、Redis容器，网签web容器、证书生成服务容器、签章容器之间的协调通信，便于不同测试分支进行上线前测试。</p>
+                <p>8、首营资料交换项目(网签):主要web业务类开发、涉及到celery定时任务、相关资源信息爬虫。</p>
+                <p>9、基础药品数据库项目:主要使用Thrift和Rabbitmq+pika+kombu等方式进行服务器之间的数据通信。</p>
+                <p>10、欣怡美项目:三级代理商销售金额佣金计算和微信公众号相关开发(协助)。</p>
+
+            </div>
+
+
+            <div>
+                <h2>内省:</h2>
+                <p>享受Bug被层层推理出来的感觉。</p>
+
+            </div>
+            <div>
+                <h2>本站使用:</h2>
+                <p>享受Bug被层层推理出来的感觉。</p>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+{% endblock main %}

@@ -1,0 +1,13 @@
+cov_settings.py
+local_settings.py
+gunicorn_conf.py
+celerybeat*
+__pycache__
+*.swp
+*.swo
+*.un~
+*.idea
+*.pyc
+*.sqlite3
+*.logs
+logs/
