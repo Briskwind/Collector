@@ -21,7 +21,20 @@
 
         .poem-line {
             padding-bottom: 10px;
-            font-family:"Times New Roman",Georgia,Serif;
+            font-family: "Times New Roman", Georgia, Serif;
+        }
+
+        .login-box-body, .register-box-body {
+            background: #ffffff85;
+            padding: 20px;
+            border-top: 0;
+            color: #666;
+        }
+
+        .login-box, .register-box {
+            width: 360px;
+            margin: auto;
+            padding-top: 15%;
         }
 
     </style>
@@ -35,7 +48,41 @@
 
     <main class="main bg">
 
-        <div class="cj">
+
+        <div class="login-box" id="login_box">
+
+            <div class="login-box-body">
+                <p class="login-box-msg">注册/登陆</p>
+
+                <form action="/" method="post">
+                    {% csrf_token %}
+                    <div class="form-group has-feedback">
+                        <input type="email" class="form-control" name="username" placeholder="Email">
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <p style="text-align: center">{{ message }}</p>
+
+                    <div class="row">
+
+                        <div class="col-xs-4" style="float: right">
+
+
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">注册/登陆</button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+
+        <div class="cj" style="display: none">
             <p class="poem-line">《仓颉》— <span>五月天</span></p>
             <p class="poem-line">一颗葡萄有多甜美，</p>
             <p class="poem-line">用尽了所有的图腾和语言描写。</p>
@@ -48,7 +95,6 @@
             <p class="poem-line">想穿越，想飞天，想变成造字的仓颉。</p>
             <p class="poem-line">写出让宇宙能重来的诗篇。</p>
             <p class="poem-line">天雨粟，鬼夜哭，思念漫太古。</p>
-
         </div>
 
 
@@ -57,3 +103,29 @@
 
 
 {% endblock main %}
+
+
+{% block scripts %}
+    <script>
+
+        layui.use(['jquery', 'layer'], function () {
+            var $ = layui.$,
+                layer = layui.layer;
+
+            $('#login').click(function () {
+
+
+                if ($('#login_box').hasClass('hidden')) {
+                    $('#login_box').removeClass('hidden')
+                } else {
+                    $('#login_box').addClass('hidden')
+                }
+
+            })
+        });
+
+
+        console.log(1)
+
+    </script>
+{% endblock %}

@@ -31,6 +31,8 @@
         }
 
         .f-bg {
+            position: fixed;
+            z-index: -1;
             margin-top: 44px;
             background: url('/static/images/flowerbk.png');
             width: 100%;
@@ -43,8 +45,12 @@
 
 
 
-    <main class="main f-bg">
-        <div style="width:61.8%;margin: auto">
+    <main class="main">
+
+        <div class="f-bg">
+        </div>
+
+        <div style="width:61.8%;margin: auto;z-index: 20">
 
 
             <h2 class="name-center">BugMaker</h2>
@@ -83,7 +89,8 @@
                 <p>5、内网搭建Gitlab、Gitlab Runner进行自动化测试：在内网搭建Gitlab供开发人员进行小项目的开发，搭建Gitlab
                     Runner使用docker为executor进行代码提交后的自动化测试。</p>
                 <p>6、服务器监控 open falcon:使用小米开源open falcon进行服务器监控，后专用阿里云，使用阿里云自带的监控数据，设置阈值警报，邮件钉钉通知。</p>
-                <p>7、使用Docker搭建整体(网签)类生产环境搭建:Mysql、Rabbitmq、Redis容器，网签web容器、证书生成服务容器、签章容器之间的协调通信，便于不同测试分支进行上线前测试。</p>
+                <p>
+                    7、使用Docker搭建整体(网签)类生产环境搭建:Mysql、Rabbitmq、Redis容器，网签web容器、证书生成服务容器、签章容器之间的协调通信，便于不同测试分支进行上线前测试。</p>
                 <p>8、首营资料交换项目(网签):主要web业务类开发、涉及到celery定时任务、相关资源信息爬虫。</p>
                 <p>9、基础药品数据库项目:主要使用Thrift和Rabbitmq+pika+kombu等方式进行服务器之间的数据通信。</p>
                 <p>10、欣怡美项目:三级代理商销售金额佣金计算和微信公众号相关开发(协助)。</p>
@@ -91,17 +98,19 @@
             </div>
 
 
-            <div>
+            <div class="line">
                 <h2>内省:</h2>
                 <p>享受Bug被层层推理出来的感觉。</p>
+                <p>关于源码:平时没有看源码的习惯，但bug相关问题，不能一眼定位的，会逐步分析源码。</p>
+
 
             </div>
-            <div>
+            <div class="line">
                 <h2>本站使用:</h2>
                 <p>享受Bug被层层推理出来的感觉。</p>
 
-            </div>
 
+            </div>
 
         </div>
 
