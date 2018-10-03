@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'zscript'
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'extensions.middleware.UserMiddleware',
