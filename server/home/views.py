@@ -1,4 +1,6 @@
+from django.contrib import auth
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -31,7 +33,6 @@ class Home(APIView):
         try:
             user = get_or_create_user(account=account, password=password)
         except Exception as error:
-            print('error', error)
             context['message'] = error
             return render(request, self.template_name, context)
         else:
@@ -41,6 +42,12 @@ class Home(APIView):
             return redirect(next_url)
 
 
+class LoginOut(APIView):
+    """ 退出登陆"""
+
+    def get(self, request):
+        request.session.flush()
+        return HttpResponseRedirect('/')
 
 
 class About(APIView):
@@ -52,7 +59,6 @@ class About(APIView):
     def get(self, request):
         context = dict()
         return render(request, self.template_name, context)
-
 
 
 class UserInfo(APIView):

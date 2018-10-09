@@ -19,7 +19,6 @@ def user_passes_test(login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
-
             if get_user(request):
                 return view_func(request, *args, **kwargs)
             path = request.build_absolute_uri()
@@ -53,7 +52,6 @@ def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login
 def get_user(request):
     user = None
     user_id = _get_user_session_key(request)
-    print('user_id', user_id)
 
     if user_id:
         try:
@@ -122,5 +120,6 @@ def login(request, user, backend=None):
     request.session[LOGUSER_SESSION_KEY] = user._meta.pk.value_to_string(user)
     request.session[HASH_LOGUSER_SESSION_KEY] = session_auth_hash
     if hasattr(request, 'user'):
-        request.user = user
+        request.xuser = user
+
     rotate_token(request)
