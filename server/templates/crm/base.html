@@ -62,8 +62,11 @@
             border-bottom: 0 solid transparent;
         }
 
+
     </style>
     {% block style %}
+
+
 
     {% endblock %}
 </head>
@@ -84,14 +87,14 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown user user-menu">
+                    <li class="dropdown user user-menu" style="min-width: 100px;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">{{ user.account }}</span>
                         </a>
 
-                                <div class="dropdown-menu" style="width: 100%;">
-                                    <a href="/login_out" class="btn btn-default btn-flat">Sign out</a>
-                                </div>
+                        <div class="dropdown-menu" id="dropdown-menu" style="width: 100%; min-width: 10px;">
+                            <div style="padding: 7px;text-align: center;background-color: #e2e2e2;"><a href="/login_out" style="color: #20222A;">退 出</a></div>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -16,4 +16,5 @@ class CrmHome(APIView):
     @method_decorator(login_required)
     def get(self, request):
         context = dict()
+        context['user'] =request.xuser
         return render(request, self.template_name, context)
