@@ -1,6 +1,7 @@
 from functools import wraps
 from urllib.parse import urlparse
 
+import logging
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
 from django.middleware.csrf import rotate_token
@@ -9,6 +10,8 @@ from django.utils.crypto import constant_time_compare
 
 from home.models import User
 from server import settings
+
+logger = logging.getLogger('admin_log')
 
 
 def user_passes_test(login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
@@ -31,7 +34,9 @@ def user_passes_test(login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
             from django.contrib.auth.views import redirect_to_login
             return redirect_to_login(
                 path, resolved_login_url, redirect_field_name)
+
         return _wrapped_view
+
     return decorator
 
 
