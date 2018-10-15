@@ -1,5 +1,5 @@
 cov_settings.py
-local_settings.py
+server.local_settings.py
 gunicorn_conf.py
 celerybeat*
 __pycache__
