@@ -24,9 +24,16 @@ CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
 
 
 CELERYBEAT_SCHEDULE = {
-    'add-every-30-seconds': {
-        'task': 'celery_pro.tasks.fail_restart',
-        'schedule': timedelta(seconds=60),
-        'args': (16, 0)
+    # 'add-every-30-seconds': {
+    #     'task': 'celery_pro.tasks.fail_restart',
+    #     'schedule': timedelta(seconds=60),
+    #     'args': (16, 0)
+    # },
+
+    'get_weibo_top': {
+        'task': 'crm.tasks.get_weibo_top_data',
+        'schedule': timedelta(seconds=300),
     },
+
+
 }

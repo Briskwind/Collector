@@ -105,8 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
 
 USE_L10N = True
@@ -127,6 +125,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_URL = '/'
 
+
+TIME_ZONE = 'Asia/Shanghai'
 
 try:
     from server.local_settings import *

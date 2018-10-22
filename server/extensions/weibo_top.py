@@ -22,11 +22,18 @@ def get_weibo_top():
         data_item = {}
         url = item.attrs['href']
         text = item.text
+        hot_count = 0
+        for i in item.next_siblings:
+            try:
+                hot_count = int(i.text)
+            except:
+                pass
 
         if url.endswith('top') and text not in all_news:
             data_item['text'] = text
             data_item['url'] = base_url + url
             data_item['platform'] = 'sina'
+            data_item['hot_count'] = hot_count
             data.append(data_item)
             news_list.append(News(**data_item))
 

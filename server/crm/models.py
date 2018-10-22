@@ -13,6 +13,7 @@ class News(models.Model):
     text = models.CharField('标题', max_length=64)
     url = models.CharField('链接', max_length=256)
     news_type = models.CharField('新闻类型', max_length=64)
+    hot_count = models.IntegerField('新闻热度',blank=True, null=True,)
     images = models.CharField('图片', max_length=512, default='')
     platform = models.URLField('平台', null=True, blank=True, default='')
     creation_time = models.DateTimeField('创建时间', default=datetime.now)
