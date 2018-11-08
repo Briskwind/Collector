@@ -21,8 +21,6 @@
     <div class="content-wrapper" style="min-height: 916px;margin:auto">
 
 
-
-
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
@@ -54,6 +52,10 @@
                                                 </th>
                                                 <th class="sorting">
                                                     热度
+                                                </th>
+
+                                                <th class="sorting">
+                                                    创建时间
                                                 </th>
 
                                             </tr>
@@ -131,6 +133,7 @@
                     '<td class="sorting_1">' + data_list[i]['text'] + '</td>' +
                     '<td><a href=' + data_list[i]['url'] + '> ' + data_list[i]['url'] + '</a></td>' +
                     '<td>' + hot_count + '</td>' +
+                    '<td>' + data_list[i]['creation_time'] + '</td>' +
                     '</tr>'
             }
 

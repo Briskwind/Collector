@@ -123,7 +123,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 STATIC_URL = '/static/'
 
@@ -141,6 +141,7 @@ LOGIN_URL = '/'
 
 
 TIME_ZONE = 'Asia/Shanghai'
+
 
 try:
     from server.local_settings import *
