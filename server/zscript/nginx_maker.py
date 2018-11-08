@@ -45,7 +45,3 @@ error_log {error_logpath};
 """.format(**config)
 
 
-# python sqlmap.py -u "http://127.0.0.1:9090/user/api/login/?id=1" --auth-type Basic --auth-cred "67444758@tianzhu.com:67444758"
-
-
-print('template', template)

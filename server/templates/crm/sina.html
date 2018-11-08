@@ -1,0 +1,179 @@
+{% extends "crm/base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    微博top
+{% endblock title %}
+
+
+
+
+{% block styles %}
+    <style>
+
+
+    </style>
+{% endblock styles %}
+
+
+{% block content %}
+
+    <div class="content-wrapper" style="min-height: 916px;margin:auto">
+
+
+
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">新浪热搜列表</h3>
+                        </div>
+                        <div class="box-body">
+                            <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                <div class="row">
+                                    <div class="col-sm-6"></div>
+                                    <div class="col-sm-6"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example2" class="table table-bordered table-hover dataTable"
+                                               role="grid" aria-describedby="example2_info">
+                                            <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc">
+                                                    编号
+                                                </th>
+
+                                                <th class="sorting">
+                                                    热搜
+                                                </th>
+                                                <th class="sorting">
+                                                    链接
+                                                </th>
+                                                <th class="sorting">
+                                                    热度
+                                                </th>
+
+                                            </tr>
+
+                                            </thead>
+
+
+                                            <tbody id="tbody">
+
+
+                                            </tbody>
+
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="dataTables_info" id="example2_info" role="status"
+                                             aria-live="polite">Showing 1 to 10 of 57 entries
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                            <ul class="pagination" id="pagination">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+
+
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <script src="{% static 'commom_js/commonjs.js' %} "></script>
+
+
+
+
+    <script>
+        function CallBack(data) {
+            var data_list = data.results;
+            var html = '';
+            for (var i = 0; i < data_list.length; i++) {
+                var hot_count = 0;
+                if (data_list[i]['hot_count']) {
+                    hot_count = data_list[i]['hot_count']
+                } else {
+                    hot_count = 0;
+                }
+                html += '<tr role="row" class="odd">' +
+                    '<td>' + data_list[i]['pk'] + '</td>' +
+                    '<td class="sorting_1">' + data_list[i]['text'] + '</td>' +
+                    '<td><a href=' + data_list[i]['url'] + '> ' + data_list[i]['url'] + '</a></td>' +
+                    '<td>' + hot_count + '</td>' +
+                    '</tr>'
+            }
+
+
+            $('#tbody').append(html);
+            if (data.previous) {
+                var previous = '<li class="paginate_button previous" id="example2_previous"><a class="previous_page"   data-url="' + data.previous + '" href="#">Previous</a></li>'
+
+            } else {
+                var previous = '<li class="paginate_button previous disabled" id="example2_previous"><a >Previous</a></li>'
+            }
+
+            if (data.next) {
+                var next = '<li class="paginate_button next" id="example2_next"><a class="next_page" data-url="' + data.next + '" href="#" >Next</a> </li>';
+            } else {
+                var next = '<li class="paginate_button next disabled" id="example2_next"><a >Next</a></li>'
+            }
+            var pagination = previous + next;
+            $('#pagination').append(pagination)
+
+        }
+
+
+        var url = '/crm/sina_list/';
+        AjaxGet(url, CallBack);
+
+
+        $(document).delegate(".next_page", "click", function () {
+
+            var url = this.getAttribute('data-url');
+            $('#tbody').html('');
+            $('#pagination').html('');
+            AjaxGet(url, CallBack);
+        });
+
+
+        $(document).delegate(".previous_page", "click", function () {
+            var url = this.getAttribute('data-url');
+            $('#tbody').html('');
+            $('#pagination').html('');
+            AjaxGet(url, CallBack);
+        });
+
+
+    </script>
+{% endblock %}

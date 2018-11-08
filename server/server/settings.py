@@ -35,9 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'home',
     'crm',
-    'zscript'
+    'zscript',
+    'extensions',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -53,6 +55,18 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'server.urls'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS':
+        'extensions.paginations.StandardResultsSetPagination',
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
 
 TEMPLATES = [
     {

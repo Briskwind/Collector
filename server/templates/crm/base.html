@@ -116,8 +116,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-angle-right"></i>电影列表</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i>电影详情</a></li>
+                        <li><a href="/crm/"><i class="fa fa-angle-right"></i>电影列表</a></li>
+                        <li><a href="/crm/"><i class="fa fa-angle-right"></i>电影详情</a></li>
                     </ul>
                 </li>
 
@@ -131,27 +131,10 @@
 
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-angle-right"></i> 微博热搜</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i> 百度热搜</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i> 股票相关</a></li>
+                        <li><a href="/crm/sina/"><i class="fa fa-angle-right"></i> 微博热搜</a></li>
+                        <li><a href="/crm/"><i class="fa fa-angle-right"></i> 股票相关</a></li>
                     </ul>
                 </li>
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-th"></i> <span>父3</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-angle-right"></i> 子目录</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> 子目录</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> 子目录</a></li>
-                        </ul>
-                    </a>
-                </li>
-
-
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -173,25 +156,27 @@
 
 
 
-{% block scripts %}
-
-{% endblock %}
 
 
 <script src="{% static 'plugin/bpjs/jquery-2.2.3.min.js' %} "></script>
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="{% static 'plugin/bootstrap/js/jquery-ui.min.js' %} "></script>
+
+
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
 <script src="{% static 'plugin/bpjs/bootstrap.min.js' %} "></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="{% static 'plugin/bootstrap/js/raphael-min.js' %} "></script>
+
 <script src="{% static 'plugin/bpjs/morris.min.js' %} "></script>
 <script src="{% static 'plugin/bpjs/jquery.sparkline.min.js' %} "></script>
 <script src="{% static 'plugin/bpjs/jquery-jvectormap-1.2.2.min.js' %} "></script>
 
 <script src="{% static 'plugin/bpjs/jquery-jvectormap-world-mill-en.js' %} "></script>
 <script src="{% static 'plugin/bpjs/jquery.knob.js' %} "></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="{% static 'plugin/bootstrap/js/moment.min.js' %} "></script>
+
 
 <script src="{% static 'plugin/bpjs/daterangepicker.js' %} "></script>
 <script src="{% static 'plugin/bpjs/bootstrap-datepicker.js' %} "></script>
@@ -203,10 +188,18 @@
 {#<script src="{% static 'plugin/bpjs/dashboard.js' %} "></script>#}
 <script src="{% static 'plugin/bpjs/demo.js' %} "></script>
 
+
+
+
 <script>
 
     var item = $('.treeview')
-    console.log(item)
 </script>
+
+
+
+{% block scripts %}
+
+{% endblock %}
 
 </html>
