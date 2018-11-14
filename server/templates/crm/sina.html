@@ -96,7 +96,7 @@
 
         $('#table').empty();
         $('#table').bootstrapTable({
-            url: 'http://127.0.0.1:8000/crm/api/sina_list_boot_table/',   //url一般是请求后台的url地址,调用ajax获取数据。此处我用本地的json数据来填充表格。
+            url: '/crm/api/sina_list_boot_table/',   //url一般是请求后台的url地址,调用ajax获取数据。此处我用本地的json数据来填充表格。
             method: "get",                     //使用get请求到服务器获取数据
             dataType: "json",
             contentType: 'application/json,charset=utf-8',
