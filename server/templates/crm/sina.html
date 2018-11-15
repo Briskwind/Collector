@@ -10,8 +10,6 @@
 
 {% block styles %}
     <style>
-
-
     </style>
 {% endblock styles %}
 
@@ -56,7 +54,7 @@
     <script>
 
         var operateFormatter = function (value, row, index) {//赋予的参数
-            return '<a href=' + value + '> 详情链接</a>'
+            return '<a class="detail"  style="cursor: pointer;" data-url=' + row['url'] + '> ' + row['text'] + '</a>'
 
         }
         var columns = [
@@ -72,13 +70,10 @@
                 field: 'text',
                 title: '热搜',
                 align: 'center',
-            },
-            {
-                field: 'url',
-                title: '链接',
-                align: 'center',
                 formatter: operateFormatter
+
             },
+
             {
                 field: 'hot_count',
                 title: '热度',
@@ -132,6 +127,13 @@
             onLoadError: function (res) { //加载失败时执行
                 console.log('加载失败');
             }
+        });
+
+        $(document).delegate(".detail", "click", function () {
+
+            var url = this.getAttribute('data-url');
+            window.open(url)
+            console.log('yrr', url)
         });
 
 
