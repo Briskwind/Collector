@@ -21,6 +21,20 @@
     <div class="content-wrapper" style="min-height: 916px;margin:auto">
 
 
+        <div id="toolbar">
+            <div class="form-inline" role="form">
+
+
+                <div class="form-group">
+                    <input name="search" class="form-control" type="text" placeholder="搜索">
+                    <input type="text" class="form-control" id="sandbox-container" placeholder="起始时间">
+
+                </div>
+
+                <button id="ok" type="submit" class="btn btn-default">搜索</button>
+            </div>
+        </div>
+
         <section class="content">
             <table id="table"></table>
 
@@ -29,6 +43,8 @@
 
 
     </div>
+
+
 
 
 
@@ -47,6 +63,14 @@
 
     <!-- Latest compiled and minified Locales -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+
+    <script src="https://uxsolutions.github.io/bootstrap-datepicker/bootstrap-datepicker/js/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
+
+
+
+
 
     <script src="{% static 'commom_js/commonjs.js' %} "></script>
 
@@ -101,16 +125,12 @@
             striped: true,                      // 隔行加亮
             queryParamsType: "limit",           //设置为"undefined",可以获取pageNumber，pageSize，searchText，sortName，sortOrder
                                                 //设置为"limit",符合 RESTFul 格式的参数,可以获取limit, offset, search, sort, order
+            queryParams: queryParams,
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             sortable: true,                     //是否启用排序;意味着整个表格都会排序
-            sortName: 'uid',                    // 设置默认排序为 name
-            sortOrder: "asc",                   //排序方式
             pagination: true,                   //是否显示分页（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-            strictSearch: true,
             showColumns: true,                  //是否显示所有的列
             showRefresh: true,                  //是否显示刷新按钮
-            showToggle: true,                    //是否显示详细视图和列表视图
             clickToSelect: true,                //是否启用点击选中行
             minimumCountColumns: 2,          //最少允许的列数 clickToSelect: true, //是否启用点击选中行
             pageNumber: 1,                   //初始化加载第一页，默认第一页
@@ -130,16 +150,38 @@
         });
 
         $(document).delegate(".detail", "click", function () {
-
             var url = this.getAttribute('data-url');
             window.open(url)
-            console.log('yrr', url)
+        });
+
+
+        var $table = $('#table'),
+            $ok = $('#ok');
+
+        $(function () {
+            $ok.click(function () {
+                $table.bootstrapTable('refresh');
+            });
+        });
+
+        function queryParams() {
+            var params = {};
+            $('#toolbar').find('input[name]').each(function () {
+                params[$(this).attr('name')] = $(this).val();
+            });
+            return params;
+        }
+
+        $('#sandbox-container').datepicker({
+            language: "zh-CN",
+            orientation: "top right",
+            autoclose: true
+
+
         });
 
 
     </script>
-
-
 
 
 {% endblock %}
