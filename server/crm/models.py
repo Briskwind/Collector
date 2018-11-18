@@ -27,6 +27,7 @@ class BookTag(models.Model):
     """ 图书标签"""
 
     tag_name = models.CharField('标签', max_length=64)
+    check = models.CharField('是否意见检测', max_length=8, default='0')
     create_time = models.DateTimeField('创建时间', default=datetime.now)
 
     def __str__(self):
@@ -40,15 +41,15 @@ class BookTag(models.Model):
 class Book(models.Model):
     """ 图书名称"""
     book_id = models.CharField('豆瓣id', max_length=64)
-    name = models.CharField('书名称', max_length=128)
-    author = models.CharField('作者', max_length=256)
-    price = models.CharField('价格', max_length=128)
-    publish = models.CharField('出版社', max_length=256)
-    score = models.IntegerField('评分', default=0)
-    cover = models.CharField('封面', max_length=256)
-    url = models.CharField('链接', max_length=256)
-    introduction = models.CharField('简介', max_length=512)
-    tag = models.ManyToManyField(BookTag,verbose_name="标签",related_name="books")
+    name = models.CharField('书名称', max_length=128, default='')
+    author = models.CharField('作者', max_length=256, default='')
+    price = models.CharField('价格', max_length=128, default='')
+    publish = models.CharField('出版社', max_length=256, default='')
+    score = models.FloatField('评分', default=0)
+    cover = models.CharField('封面', max_length=256, default='')
+    url = models.CharField('链接', max_length=256, default='')
+    introduction = models.CharField('简介', max_length=512, default='')
+    tag = models.ManyToManyField(BookTag, verbose_name="标签", related_name="books")
     create_time = models.DateTimeField('创建时间', default=datetime.now)
 
     def __str__(self):
@@ -59,5 +60,14 @@ class Book(models.Model):
         verbose_name_plural = '图书'
 
 
+class CAndLInfo(models.Model):
+    """ c&l 物品信息"""
+    name = models.CharField('c&l信息', max_length=128)
+    create_time = models.DateTimeField('创建时间', default=datetime.now)
 
+    def __str__(self):
+        return self.name
 
+    class Meta:
+        verbose_name = 'c&l信息'
+        verbose_name_plural = 'c&l信息'

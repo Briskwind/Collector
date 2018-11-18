@@ -10,6 +10,14 @@
 
 {% block styles %}
     <style>
+        .book_name {
+            cursor: pointer;
+            width: 300px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin: auto;
+        }
     </style>
 {% endblock styles %}
 
@@ -27,13 +35,12 @@
 
                 <div class="form-group">
                     <input name="search" class="form-control" type="text" placeholder="搜索">
-                    <input type="text" class="form-control" id="sandbox-container" placeholder="起始时间">
-
                 </div>
 
                 <button id="ok" type="submit" class="btn btn-default">搜索</button>
             </div>
         </div>
+
 
         <section class="content">
             <table id="table"></table>
@@ -79,9 +86,13 @@
 
         var operateFormatter = function (value, row, index) {//赋予的参数
 
-            return '<a class="detail"  style="cursor:pointer;max-width:50px" data-url=' + row['url'] + '> ' + row['text'] + '</a>'
 
-        }
+            return '<div style="cursor: pointer;width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin: auto">' +
+                '<a data-url="' + row['url'] + '"> ' + row['name'] + '</a>' +
+                '</div>'
+        };
+
+
         var columns = [
 
             {
@@ -92,20 +103,26 @@
 
             },
             {
-                field: 'text',
-                title: '热搜',
+                title: '书名',
                 align: 'center',
                 formatter: operateFormatter
 
             },
 
             {
-                field: 'hot_count',
-                title: '热度',
+                field: 'author',
+                title: '作者',
+                align: 'center',
+            },
+
+
+            {
+                field: 'price',
+                title: '价格',
                 align: 'center',
             },
             {
-                field: 'creation_time',
+                field: 'create_time',
                 title: '创建时间',
                 align: 'center',
             }
@@ -116,7 +133,7 @@
 
         $('#table').empty();
         $('#table').bootstrapTable({
-            url: '/crm/api/sina_list/',   //url一般是请求后台的url地址,调用ajax获取数据。此处我用本地的json数据来填充表格。
+            url: '/crm/api/book_list/',   //url一般是请求后台的url地址,调用ajax获取数据。此处我用本地的json数据来填充表格。
             method: "get",                     //使用get请求到服务器获取数据
             dataType: "json",
             contentType: 'application/json,charset=utf-8',
@@ -155,7 +172,6 @@
             window.open(url)
         });
 
-
         $('#ok').click(function () {
             $('#table').bootstrapTable('refresh');
         });
@@ -165,12 +181,7 @@
             var params = {
                 offset: params.offset,
                 limit: params.limit,
-                order: params.order,
-
-                // ordername: params.sort,
-                // startDateTime: $("#dateSearch .startDate").val(),
-                // endDateTime: $("#dateSearch .endDate").val(),
-                // search: $("#dateSearch .imuserid").val()
+                order: params.order
 
             };
 
@@ -180,15 +191,6 @@
 
             return params;
         }
-
-
-        $('#sandbox-container').datepicker({
-            language: "zh-CN",
-            orientation: "top right",
-            autoclose: true
-
-
-        });
 
 
     </script>

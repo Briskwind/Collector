@@ -93,7 +93,9 @@
                         </a>
 
                         <div class="dropdown-menu" id="dropdown-menu" style="width: 100%; min-width: 10px;">
-                            <div style="padding: 7px;text-align: center;background-color: #e2e2e2;"><a href="/login_out" style="color: #20222A;">退 出</a></div>
+                            <div style="padding: 7px;text-align: center;background-color: #e2e2e2;"><a href="/login_out"
+                                                                                                       style="color: #20222A;">退
+                                出</a></div>
                         </div>
                     </li>
                 </ul>
@@ -108,16 +110,16 @@
 
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
-                <li class="active treeview">
+                <li class="treeview" id="first">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>豆瓣电影</span>
+                        <i class="fa fa-dashboard"></i> <span>豆瓣书籍</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/crm/"><i class="fa fa-angle-right"></i>电影列表</a></li>
-                        <li><a href="/crm/"><i class="fa fa-angle-right"></i>电影详情</a></li>
+                        <li><a href="/crm/book/" id="book"><i class="fa fa-angle-right"></i>书籍列表</a></li>
+                        <li><a href="/crm/"><i class="fa fa-angle-right"></i> 书籍详情</a></li>
                     </ul>
                 </li>
 
@@ -131,8 +133,7 @@
 
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/crm/sina/"><i class="fa fa-angle-right"></i> 微博热搜</a></li>
-                        <li><a href="/crm/"><i class="fa fa-angle-right"></i> 股票相关</a></li>
+                        <li><a href="/crm/sina/" id="sina"><i class="fa fa-angle-right"></i> 微博热搜</a></li>
                     </ul>
                 </li>
             </ul>
@@ -153,9 +154,6 @@
     <div class="control-sidebar-bg"></div>
 </div>
 </body>
-
-
-
 
 
 <script src="{% static 'plugin/bpjs/jquery-2.2.3.min.js' %} "></script>
@@ -189,11 +187,18 @@
 <script src="{% static 'plugin/bpjs/demo.js' %} "></script>
 
 
-
-
 <script>
 
-    var item = $('.treeview')
+    var url = location.href;
+    var active = url.split('/')[4];
+    if (active) {
+        var tem = $('#' + active).parent().parent().parent();
+        $(tem).addClass('active')
+    } else {
+        $('#first').addClass('active')
+    }
+
+
 </script>
 
 
