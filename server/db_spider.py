@@ -95,3 +95,84 @@ def main():
         if flag > 40:
             tag.check = '1'
             tag.save()
+
+
+
+import os
+import sys
+
+from requests import ConnectTimeout
+from user_agent import generate_user_agent
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "server.settings")
+import django
+
+django.setup()
+
+from crm.models import BookTag, Book
+
+import requests
+# from server.local_settings import ip_data
+
+from bs4 import BeautifulSoup
+
+
+def make_tag(ip_data):
+    "获取详细信息，对书本进行打标签"
+    books = Book.objects.filter(tag__isnull=True,  score__gt=6)[:200]
+    print(books.count())
+
+    for book in books:
+        print(Book.objects.filter(tag__isnull=True, score__gt=6).count())
+        url = book.url
+
+        agent = generate_user_agent()
+
+        headers = {
+            'user-agent': agent,
+
+        }
+        ip_port = ip_data
+        proxies = {
+            'http': 'http://' + ip_port,
+            'https': 'https://' + ip_port,
+        }
+
+        res = requests.get(url, proxies=proxies, headers=headers, timeout=15)
+
+        text = res.content
+        soup = BeautifulSoup(text, "lxml")
+        tags = soup.find_all('a', {'class': ' tag'})
+        print('len tags', len(tags), url)
+        if len(tags) == 0:
+            raise Exception('tag_is_0')
+        for tag in tags:
+            tag_name = tag.text
+            res = BookTag.objects.filter(tag_name=tag_name).first()
+            if res:
+                book.tag.add(res)
+
+
+def get_ip_data():
+    import requests
+    from server.local_settings import ip_url
+    url = ip_url
+    res = requests.get(url)
+    res.json()
+    data = res.json()
+    ip_data = '{0}:{1}'.format(data['data'][0]['ip'], data['data'][0]['port'])
+    print('调用接口')
+    return ip_data
+
+
+ip_data = '124.167.58.47:4208'
+while True:
+    try:
+        print('ip_data', ip_data)
+        make_tag(ip_data)
+    except Exception as e:
+        if str(e) == 'tag_is_0' or 'HTTPSConnectionPool' in str(e):
+            ip_data = get_ip_data()
+        continue
+
+

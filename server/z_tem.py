@@ -1,73 +1,23 @@
-import os
-import sys
+import difflib
 
-from requests import ConnectTimeout
-from user_agent import generate_user_agent
+name_list = ['力学:理论物理学教程第一卷', '贝克特全集（全22册）', '莎士比亚悲剧喜剧全集·朱生豪译（全5册）', '傲慢与偏见:傲慢与偏见', '莎士比亚全集（全8册）',
+             '力量训练基础:用5种杠铃动作极速发展身体实力', '老妇还乡:迪伦马特喜剧选', '法律思维与民法实例:请求权基础理论体系', '福尔摩斯探案集', '易卜生戏剧集（三卷）',
+             '圣诞颂歌:世界插画大师英诺森提作品', '聶魯達一百首愛的十四行詩', '谁可以这样爱我', '泰坦尼克号', '哈利·波特与魔法石', '哈利·波特与火焰杯', '奥狄浦斯王',
+             '二十世纪西方文学理论:二十世纪西方文学理论', '瑜伽之光', '莎士比亚喜剧悲剧集', '魔戒（第三部）:王者无敌', '合同法总论', '白痴', '哈利·波特与阿兹卡班的囚徒', '哈利·波特与死亡圣器',
+             '哈利·波特与密室', '莎士比亚四大悲剧', '魔鬼詩篇', '辛德勒名单', '为权利而斗争', '當男孩遇見女孩', '魔戒（第一部）:魔戒再现', '傲慢与偏见', '拜伦雪莱济慈抒情诗精选集',
+             '查密莉雅', '莎士比亚喜剧集', '一个陌生女人的来信', '文学阅读指南', '宝宝圣经：怀孕·分娩·育婴图解大百科（白金修订版）', '巴斯克维尔的猎犬:福尔摩斯探案全集4',
+             '存在主义咖啡馆:自由、存在和杏子鸡尾酒', 'Macbeth', '萨拉·凯恩戏剧集', '渔夫和他的灵魂', '荆棘之城', '一个无政府主义者的意外死亡:达里奥·福戏剧作品集',
+             '人类理解论（上下）:人类理解论', '南方与北方', '一个陌生女子的来信', '一封陌生女子的来信', '奥瑟罗:中英文对照全译本', '无事生非', '简爱（英文全本）', '哈姆莱特',
+             '麦克白:中英文对照全译本', '爱的进化论', '一九〇六:英伦乡野手记', '明亮的星', '呼啸山庄', '私货:詹姆斯·伍德批评文集', '纯真年代', '李尔王', '爱上浪漫',
+             '成为简•奥斯丁:《成为简·奥斯丁》电影原著', '剧本:影视写作的艺术、技巧和商业运作', '罗密欧与朱丽叶（名著名译插图本）:莎士比亚悲剧五种', '凤囚凰漫画壹', '浮生梦', '一天', '爱情笔记',
+             '无名的裘德', '温莎的风流娘们', '雾都孤儿', '1987，我们的红楼梦', '回归', '第十二夜', '发条橙', '鲁滨逊漂流记', '如果世界是猫的', '爱丽丝没有仙境',
+             '丝绸:巴里科经典作品', '德伯家的苔丝', '我坐在彼德拉河畔，哭泣', '特别的他', '小气财神', '她他', '虹', '当贝利遇到艾丽斯:16开本', '爱玛', '马语者', '岛',
+             '你好像一点也不想我', '苹果笔记本', '邮差', '冬天的故事:莎士比亚注释丛书11', '暧昧纯友谊', '分手清单', '真的不用读完一本书', '火车上的女孩', '梦中小屋的安妮']
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "server.settings")
-import django
+title = '罗密欧与朱丽叶（名著名译插图本）:莎士比亚悲剧五种'
 
-django.setup()
-
-from crm.models import BookTag, Book
-
-import requests
-# from server.local_settings import ip_data
-
-from bs4 import BeautifulSoup
-
-
-def make_tag(ip_data):
-    "获取详细信息，对书本进行打标签"
-    books = Book.objects.filter(tag__isnull=True)
-    print(books.count())
-
-    for book in books:
-        url = book.url
-
-        agent = generate_user_agent()
-
-        headers = {
-            'user-agent': agent,
-
-        }
-        ip_port = ip_data
-        proxies = {
-            'http': 'http://' + ip_port,
-            'https': 'https://' + ip_port,
-        }
-
-        res = requests.get(url, headers=headers, timeout=15)
-
-        text = res.content
-        soup = BeautifulSoup(text, "lxml")
-        tags = soup.find_all('a', {'class': ' tag'})
-        print('len tags', len(tags))
-        for tag in tags:
-            tag_name = tag.text
-            res = BookTag.objects.filter(tag_name=tag_name).first()
-            if res:
-                book.tag.add(res)
+for name in name_list:
+    matcher = difflib.SequenceMatcher(None, name, title)
+    print('matcher', matcher.ratio(), name)
 
 
-
-def get_ip_data():
-    import requests
-
-    url = 'http://piping.mogumiao.com/proxy/api/get_ip_bs?appKey=af24def308ab4c3a920f38f937f14b96&count=1&expiryDate=0&format=1&newLine=2'
-    res = requests.get(url)
-    res.json()
-    data = res.json()
-    print('data', data)
-    ip_data = '{0}:{1}'.format(data['msg'][0]['ip'], data['msg'][0]['port'])
-    return ip_data
-
-ip_data = '125.112.39.193:38096'
-while True:
-    try:
-        print('ip_data', ip_data)
-        make_tag(ip_data)
-    except Exception as e:
-        ip_data = get_ip_data()
-        print(e)
-        pass
