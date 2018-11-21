@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^sina', login_required(TemplateView.as_view(template_name="crm/sina.html")), name="sina"),
     url(r'^book/$', login_required(TemplateView.as_view(template_name="crm/book.html")), name="book"),
 
-
+    url(r'^video/cbc6988b/$', login_required(TemplateView.as_view(template_name="crm/video.html")), name="video"),
 
     # url(r'^candl/$', views.CAndList.as_view(), name="candl"),
     # url(r'^candl_detail/$', views.CAndLDetail.as_view(), name="candl_detail"),
