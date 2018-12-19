@@ -1,4 +1,6 @@
 cov_settings.py
+real.py
+xsl.py
 local_settings.py
 gunicorn_conf.py
 celerybeat*
