@@ -1,3 +1,4 @@
+skl_data/
 cov_settings.py
 server.local_settings.py
 gunicorn_conf.py
