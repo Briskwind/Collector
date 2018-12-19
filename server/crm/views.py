@@ -12,7 +12,7 @@ from extensions.auth import login_required
 from django.http import JsonResponse
 import logging
 
-from extensions.recommender import BookRecommender
+# from extensions.recommender import BookRecommender
 
 logger = logging.getLogger('admin_log')
 
@@ -82,11 +82,9 @@ class BookList(APIView):
     serializer_class = BookSerializer
 
     def get(self, request):
-
-
-        book = Book.objects.all().first()
-        recommender = BookRecommender()
-        recommender.recommender(book)
+        # book = Book.objects.all().first()
+        # recommender = BookRecommender()
+        # recommender.recommender(book)
 
 
         order = request.query_params.get('order', None)
