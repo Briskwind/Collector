@@ -88,7 +88,7 @@
 
 
             return '<div style="cursor: pointer;width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin: auto">' +
-                '<a data-url="' + row['url'] + '"> ' + row['name'] + '</a>' +
+                '<a class="detail" data-url="' + row['url'] + '"> ' + row['name'] + '</a>' +
                 '</div>'
         };
 
@@ -191,6 +191,14 @@
 
             return params;
         }
+
+
+
+        $(document).delegate(".detail", "click", function () {
+            var url = this.getAttribute('data-url');
+            window.open(url)
+        });
+
 
 
     </script>

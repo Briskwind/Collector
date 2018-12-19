@@ -1,0 +1,81 @@
+{% extends "crm/base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    书籍详情页
+{% endblock title %}
+
+
+
+
+{% block styles %}
+    <style>
+    </style>
+{% endblock styles %}
+
+
+{% block content %}
+
+
+    <div class="content-wrapper" style="min-height: 916px;margin:auto">
+
+
+        <section class="content">
+
+
+            <div style="width:50%;float: left">
+                <div style="width: 50%;float: left">
+                    <div id="img"></div>
+
+
+                </div>
+
+                <div style="width: 50%;float: left">
+                    <span class="pl">原作名:</span> ギリシア人の物語
+                    <br>
+                    <span><span class="pl"> 作者</span>:<a>[日] 盐野七生</a></span>
+                    <br>
+                    <span class="pl">出版社:</span> 中信出版社·见识城邦
+                    <br>
+                    <span class="pl">定价:</span> 148
+                    <br>
+                    <span class="pl">评分:</span> 9
+                    <br>
+
+                </div>
+            </div>
+
+
+            <div style="width: 50%;float: left">
+                相似书籍
+            </div>
+        </section>
+
+    </div>
+
+
+
+
+
+{% endblock content %}
+
+{% block scripts %}
+
+
+
+    <script>
+
+        var html = '<img style="width: 135px;max-height: 200px;" src="https://img1.doubanio.com/view/subject/l/public/s29891738.jpg"/>';
+
+        var iframe = document.createElement("iframe");
+        iframe.src = 'javascript:void(function(){document.open();document.write(\'' + html + '\');document.close();}())';
+        $('#img').html(iframe);
+        iframe.style.width = "145px";
+        iframe.style.height = "200px";
+        iframe.style.border = 0;
+        iframe.style.zIndex = 10;
+        iframe.scrolling = "no";
+    </script>
+
+
+{% endblock %}

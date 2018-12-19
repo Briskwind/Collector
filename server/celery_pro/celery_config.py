@@ -32,7 +32,7 @@ CELERYBEAT_SCHEDULE = {
 
     'get_weibo_top': {
         'task': 'crm.tasks.get_weibo_top_data',
-        'schedule': timedelta(seconds=60),
+        'schedule': timedelta(minutes=2),
     },
 
 

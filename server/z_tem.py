@@ -1,23 +1,183 @@
-import difflib
-
-name_list = ['力学:理论物理学教程第一卷', '贝克特全集（全22册）', '莎士比亚悲剧喜剧全集·朱生豪译（全5册）', '傲慢与偏见:傲慢与偏见', '莎士比亚全集（全8册）',
-             '力量训练基础:用5种杠铃动作极速发展身体实力', '老妇还乡:迪伦马特喜剧选', '法律思维与民法实例:请求权基础理论体系', '福尔摩斯探案集', '易卜生戏剧集（三卷）',
-             '圣诞颂歌:世界插画大师英诺森提作品', '聶魯達一百首愛的十四行詩', '谁可以这样爱我', '泰坦尼克号', '哈利·波特与魔法石', '哈利·波特与火焰杯', '奥狄浦斯王',
-             '二十世纪西方文学理论:二十世纪西方文学理论', '瑜伽之光', '莎士比亚喜剧悲剧集', '魔戒（第三部）:王者无敌', '合同法总论', '白痴', '哈利·波特与阿兹卡班的囚徒', '哈利·波特与死亡圣器',
-             '哈利·波特与密室', '莎士比亚四大悲剧', '魔鬼詩篇', '辛德勒名单', '为权利而斗争', '當男孩遇見女孩', '魔戒（第一部）:魔戒再现', '傲慢与偏见', '拜伦雪莱济慈抒情诗精选集',
-             '查密莉雅', '莎士比亚喜剧集', '一个陌生女人的来信', '文学阅读指南', '宝宝圣经：怀孕·分娩·育婴图解大百科（白金修订版）', '巴斯克维尔的猎犬:福尔摩斯探案全集4',
-             '存在主义咖啡馆:自由、存在和杏子鸡尾酒', 'Macbeth', '萨拉·凯恩戏剧集', '渔夫和他的灵魂', '荆棘之城', '一个无政府主义者的意外死亡:达里奥·福戏剧作品集',
-             '人类理解论（上下）:人类理解论', '南方与北方', '一个陌生女子的来信', '一封陌生女子的来信', '奥瑟罗:中英文对照全译本', '无事生非', '简爱（英文全本）', '哈姆莱特',
-             '麦克白:中英文对照全译本', '爱的进化论', '一九〇六:英伦乡野手记', '明亮的星', '呼啸山庄', '私货:詹姆斯·伍德批评文集', '纯真年代', '李尔王', '爱上浪漫',
-             '成为简•奥斯丁:《成为简·奥斯丁》电影原著', '剧本:影视写作的艺术、技巧和商业运作', '罗密欧与朱丽叶（名著名译插图本）:莎士比亚悲剧五种', '凤囚凰漫画壹', '浮生梦', '一天', '爱情笔记',
-             '无名的裘德', '温莎的风流娘们', '雾都孤儿', '1987，我们的红楼梦', '回归', '第十二夜', '发条橙', '鲁滨逊漂流记', '如果世界是猫的', '爱丽丝没有仙境',
-             '丝绸:巴里科经典作品', '德伯家的苔丝', '我坐在彼德拉河畔，哭泣', '特别的他', '小气财神', '她他', '虹', '当贝利遇到艾丽斯:16开本', '爱玛', '马语者', '岛',
-             '你好像一点也不想我', '苹果笔记本', '邮差', '冬天的故事:莎士比亚注释丛书11', '暧昧纯友谊', '分手清单', '真的不用读完一本书', '火车上的女孩', '梦中小屋的安妮']
-
-title = '罗密欧与朱丽叶（名著名译插图本）:莎士比亚悲剧五种'
-
-for name in name_list:
-    matcher = difflib.SequenceMatcher(None, name, title)
-    print('matcher', matcher.ratio(), name)
+""" test"""
+# yjd nginx config
+# 文件路径：/root/nginx
+"""
 
 
+configure arguments: --user=root --group=root --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx/nginx.pid --lock-path=/var/lock/nginx.lock --http-client-body-temp-path=/var/tmp/nginx/client --http-proxy-temp-path=/var/tmp/nginx/proxy --http-fastcgi-temp-path=/var/tmp/nginx/fcgi --http-uwsgi-temp-path=/var/tmp/nginx/uwsgi --with-http_v2_module --with-http_ssl_module --with-stream --with-openssl=../openssl-1.1.0g --with-pcre=../pcre-8.38 --with-pcre-jit --with-zlib=../zlib-1.2.11 --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_geoip_module
+
+nginx version: nginx/1.10.3
+built by gcc 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)
+built with OpenSSL 1.1.0g  2 Nov 2017
+TLS SNI support enabled
+configure arguments:
+
+--user=root
+--group=root
+--prefix=/usr/share/nginx
+--sbin-path=/usr/sbin/nginx
+--conf-path=/etc/nginx/nginx.conf
+--error-log-path=/var/log/nginx/error.log
+--http-log-path=/var/log/nginx/access.log
+--pid-path=/var/run/nginx/nginx.pid
+--lock-path=/var/lock/nginx.lock
+--http-client-body-temp-path=/var/tmp/nginx/client
+--http-proxy-temp-path=/var/tmp/nginx/proxy
+--http-fastcgi-temp-path=/var/tmp/nginx/fcgi
+--http-uwsgi-temp-path=/var/tmp/nginx/uwsgi
+--with-http_v2_module
+--with-http_ssl_module
+--with-stream
+--with-openssl=../openssl-1.1.0g
+--with-pcre=../pcre-8.38
+--with-pcre-jit
+--with-zlib=../zlib-1.2.11
+--with-http_realip_module
+--with-http_gzip_static_module
+--with-http_stub_status_module
+--with-http_geoip_module
+
+"""
+
+
+# wq nginx config
+# 文件路径：/data/download/nginx-1.11.2
+"""
+nginx version: nginx/1.11.2
+built by gcc 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC)
+built with OpenSSL 1.0.2k  26 Jan 2017
+TLS SNI support enabled
+configure arguments:
+--with-ld-opt=-Wl,
+-rpath,/usr/local/lib/
+--add-module=../ngx_devel_kit-0.3.0
+--add-module=../lua-nginx-module-0.10.7
+--with-openssl=../openssl
+--with-http_v2_module
+--with-http_ssl_module
+--with-http_gzip_static_module
+--with-http_stub_status_module
+
+
+
+./configure --prefix=/usr/local/nginx   --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
+
+
+"""
+
+
+
+# 135测试更新ninx，wq
+
+"""
+wget http://nginx.org/download/nginx-1.14.1.tar.gz
+tar -zxvf  nginx-1.14.1.tar.gz
+
+export LUAJIT_LIB=/usr/local/luajit/lib
+export LUAJIT_INC=/usr/local/luajit/include/luajit-2.0
+
+# 对openssl 重新编译？
+cd ../openssl
+
+更新 lua-nginx-module 包: git clone https://github.com/openresty/lua-nginx-module.git
+
+./configure --prefix=/usr/local/nginx  --with-ld-opt=-Wl,-rpath,/usr/local/lib --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module-0.10.7 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
+
+
+
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/nginx/sbin/nginx"
+  nginx modules path: "/usr/local/nginx/modules"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
+  nginx error log file: "/usr/local/nginx/logs/error.log"
+  nginx http access log file: "/usr/local/nginx/logs/access.log"
+  nginx http client request body temporary files: "client_body_temp"
+  nginx http proxy temporary files: "proxy_temp"
+  nginx http fastcgi temporary files: "fastcgi_temp"
+  nginx http uwsgi temporary files: "uwsgi_temp"
+  nginx http scgi temporary files: "scgi_temp"
+
+
+/etc/nginx/conf.d
+"""
+
+
+# 测试服务器 测试更新ninx， 药监单
+
+"""
+
+configure arguments: --user=root --group=root --prefix=/usr/local/nginx   --lock-path=/var/lock/nginx.lock --http-client-body-temp-path=/var/tmp/nginx/client --http-proxy-temp-path=/var/tmp/nginx/proxy --http-fastcgi-temp-path=/var/tmp/nginx/fcgi --http-uwsgi-temp-path=/var/tmp/nginx/uwsgi --with-http_v2_module --with-http_ssl_module --with-stream --with-openssl=../openssl-1.1.0g --with-pcre=../pcre-8.38 --with-pcre-jit --with-zlib=../zlib-1.2.11 --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_geoip_module
+
+
+
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/nginx/sbin/nginx"
+  nginx modules path: "/usr/local/nginx/modules"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/var/run/nginx/nginx.pid"
+  nginx error log file: "/var/log/nginx/error.log"
+  nginx http access log file: "/var/log/nginx/access.log"
+  nginx http client request body temporary files: "/var/tmp/nginx/client"
+  nginx http proxy temporary files: "/var/tmp/nginx/proxy"
+  nginx http fastcgi temporary files: "/var/tmp/nginx/fcgi"
+  nginx http uwsgi temporary files: "/var/tmp/nginx/uwsgi"
+  nginx http scgi temporary files: "scgi_temp"
+
+
+
+
+
+
+"""
+
+
+"""
+
+==== Installing LuaJIT 2.1.0-beta2 to /usr/local ====
+mkdir -p /usr/local/bin /usr/local/lib /usr/local/include/luajit-2.1 /usr/local/share/man/man1 /usr/local/lib/pkgconfig /usr/local/share/luajit-2.1.0-beta2/jit /usr/local/share/lua/5.1 /usr/local/lib/lua/5.1
+cd src && install -m 0755 luajit /usr/local/bin/luajit-2.1.0-beta2
+cd src && test -f libluajit.a && install -m 0644 libluajit.a /usr/local/lib/libluajit-5.1.a || :
+rm -f /usr/local/lib/libluajit-5.1.so.2.1.0 /usr/local/lib/libluajit-5.1.so /usr/local/lib/libluajit-5.1.so
+cd src && test -f libluajit.so && \
+  install -m 0755 libluajit.so /usr/local/lib/libluajit-5.1.so.2.1.0 && \
+  ldconfig -n /usr/local/lib && \
+  ln -sf libluajit-5.1.so.2.1.0 /usr/local/lib/libluajit-5.1.so && \
+  ln -sf libluajit-5.1.so.2.1.0 /usr/local/lib/libluajit-5.1.so || :
+cd etc && install -m 0644 luajit.1 /usr/local/share/man/man1
+cd etc && sed -e "s|^prefix=.*|prefix=/usr/local|" -e "s|^multilib=.*|multilib=lib|" luajit.pc > luajit.pc.tmp && \
+  install -m 0644 luajit.pc.tmp /usr/local/lib/pkgconfig/luajit.pc && \
+  rm -f luajit.pc.tmp
+cd src && install -m 0644 lua.h lualib.h lauxlib.h luaconf.h lua.hpp luajit.h /usr/local/include/luajit-2.1
+cd src/jit && install -m 0644 bc.lua bcsave.lua dump.lua p.lua v.lua zone.lua dis_x86.lua dis_x64.lua dis_arm.lua dis_ppc.lua dis_mips.lua dis_mipsel.lua vmdef.lua /usr/local/share/luajit-2.1.0-beta2/jit
+==== Successfully installed LuaJIT 2.1.0-beta2 to /usr/local ====
+
+Note: the development releases deliberately do NOT install a symlink for luajit
+You can do this now by running this command (with sudo):
+
+  ln -sf luajit-2.1.0-beta2 /usr/local/bin/luajit
+
+"""
+
+
+"""
+
+
+# export LUAJIT_LIB=/usr/local/luajit/lib
+# export LUAJIT_INC=/usr/local/luajit/include/luajit-2.0
+新版本 lua 测试
+
+
+export LUAJIT_LIB=/usr/local/lib
+export LUAJIT_INC=/usr/local/include/luajit-2.1
+
+./configure --with-ld-opt=-Wl,-rpath,/usr/local/lib/ --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module-0.10.7 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
+
+./configure --with-ld-opt=-Wl,-rpath,/usr/local/lib/ --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module-0.10.7 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
+
+
+
+./configure --with-ld-opt=-Wl,-rpath,/usr/local/lib/ --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
+"""

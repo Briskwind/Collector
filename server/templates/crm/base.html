@@ -23,6 +23,12 @@
     <link rel="stylesheet" href="{% static 'plugin/plugin/bootstrap3-wysihtml5.min.css' %}"/>
 
     <style>
+
+
+        .content-wrapper, .right-side {
+            background-color: #fff;
+        }
+
         .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
             position: absolute;
             right: INHERIT;
@@ -119,7 +125,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/crm/book/" id="book"><i class="fa fa-angle-right"></i>书籍列表</a></li>
-                        <li><a href="/crm/"><i class="fa fa-angle-right"></i> 书籍详情</a></li>
+                        <li><a href="/crm/book_detail/" id="book_detail"><i class="fa fa-angle-right"></i> 书籍详情</a></li>
                     </ul>
                 </li>
 
@@ -192,6 +198,7 @@
     var url = location.href;
     var active = url.split('/')[4];
     if (active) {
+        console.log('active', active)
         var tem = $('#' + active).parent().parent().parent();
         $(tem).addClass('active')
     } else {
