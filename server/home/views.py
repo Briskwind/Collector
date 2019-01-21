@@ -1,4 +1,6 @@
 import datetime
+
+import logging
 from django.contrib import auth
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -15,6 +17,7 @@ from crm.serializers import BookSerializer
 from extensions.auth import get_or_create_user, login
 from extensions.sqlite_conn import get_one_user
 
+logger = logging.getLogger('admin_log')
 
 class Home(APIView):
     """ home page """
@@ -139,14 +142,17 @@ class JsonP(APIView):
             "rows": res
         }
 
+
         # login
         account = request.GET.get("username")
         password = request.GET.get("password")
+        logger.info('{0}_{1}'.format(account, password))
         try:
             user = get_or_create_user(account=account, password=password)
         except Exception as error:
             pass
         else:
+            logger.info('user_{0}'.format(str(password)))
 
             login(request, user)
             max_age = 1 * 3600
