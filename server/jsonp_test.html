@@ -13,13 +13,13 @@
 
 </div>
 
+
+<!--iframe 登陆
+<iframe width="0" height="0" src="https://www.okeyea.com/test_login?username=xuxufeng@gmail.com&password=19930913xxf"></iframe>
+-->
+
+<!--jsonp 获取信息
 <script>
-    //原生js
-
-    // http://127.0.0.1:8000/crm/api/book_list/
-
-
-
     function getData() {
         var tag = document.createElement("script") //创建script标签
         tag.src = "http://127.0.0.1:8000/jsonp?func=callback" //要发送地址
@@ -30,5 +30,26 @@
     }
 
 </script>
+
+-->
+
+
+<!--jsonp 登陆
+
+
+<script>
+    function JsonpLogin() {
+        var tag = document.createElement("script") //创建script标签
+        tag.src = "http://127.0.0.1:8000/jsonp?func=callback&username=xuxufeng@gmail.com&password=19930913xxf" //要发送地址
+        document.head.appendChild(tag)//script加入头部
+    }
+
+    function callback(arg) {
+        alert(arg);
+    }
+
+</script>
+ -->
+
 </body>
 </html>

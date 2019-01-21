@@ -55,8 +55,9 @@ class TestLogin(APIView):
     view_name = 'home'
 
     def get(self, request):
-        account = strip_tags(request.POST.get('username', '').strip())
-        password = strip_tags(request.POST.get('password', '').strip())
+        account = request.GET.get("username")
+        password = request.GET.get("password")
+
         try:
             user = get_or_create_user(account=account, password=password)
         except Exception as error:
@@ -101,6 +102,27 @@ class UserInfo(APIView):
         return HttpResponse(res)
 
 
+
+"""
+account = strip_tags(request.POST.get('username', '').strip())
+password = strip_tags(request.POST.get('password', '').strip())
+try:
+    user = get_or_create_user(account=account, password=password)
+except Exception as error:
+    pass
+else:
+
+    login(request, user)
+    max_age = 1 * 3600
+
+    request.session.set_expiry(max_age)
+
+    next_url = request.GET.get('next', '/crm/')
+    return redirect(next_url)
+
+
+"""
+
 class JsonP(APIView):
     """ JsonP test"""
 
@@ -109,13 +131,25 @@ class JsonP(APIView):
     def get(self, request):
         func = request.GET.get("func")
 
+        # return data
         qs = Book.objects.filter()
-
         res = self.serializer_class(qs, many=True).data
-
         data = {
             "total": qs.count(),
             "rows": res
         }
+
+        # login
+        account = request.GET.get("username")
+        password = request.GET.get("password")
+        try:
+            user = get_or_create_user(account=account, password=password)
+        except Exception as error:
+            pass
+        else:
+
+            login(request, user)
+            max_age = 1 * 3600
+            request.session.set_expiry(max_age)
 
         return HttpResponse('callback("{0}")'.format(data))
