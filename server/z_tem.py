@@ -1,183 +1,70 @@
-""" test"""
-# yjd nginx config
-# 文件路径：/root/nginx
-"""
+import requests
+import time
 
+headers = {'Accept': 'application/json, text/plain, */*',
+           'Pragma': 'no-cache',
+           'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+           'Cache-Control': 'no-cache',
+           'Connection': 'keep-alive',
+           'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+           'Cookie': 'xq_a_token=243bb1cce89c8d4d365a26452e50d6e62b83db37; xq_a_token.sig=f-qBQHaLY5XWBkok8dfHMwfvPh8; xq_r_token=ad975892bb77cd4b31f5b18209607d808244bdc6; xq_r_token.sig=pvTbFtrQT8yyrLiTwRhbZ1iQYxg; _ga=GA1.2.1754412432.1547118270; _gid=GA1.2.232389708.1547118270; u=261547118270405; Hm_lvt_1db88642e346389874251b5a1eded6e3=1547118271; device_id=b98185f841d545d677528655cd689596; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1547118455',
+           'Accept-Encoding': 'gzip, deflate, br',
+           'Origin': 'https://xueqiu.com',
+           'Host': 'stock.xueqiu.com',
+           'Referer': 'https://xueqiu.com/S/SH000001'
+           }
 
-configure arguments: --user=root --group=root --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx/nginx.pid --lock-path=/var/lock/nginx.lock --http-client-body-temp-path=/var/tmp/nginx/client --http-proxy-temp-path=/var/tmp/nginx/proxy --http-fastcgi-temp-path=/var/tmp/nginx/fcgi --http-uwsgi-temp-path=/var/tmp/nginx/uwsgi --with-http_v2_module --with-http_ssl_module --with-stream --with-openssl=../openssl-1.1.0g --with-pcre=../pcre-8.38 --with-pcre-jit --with-zlib=../zlib-1.2.11 --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_geoip_module
+day_url = 'https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=SH000001&begin=1547118612840&period=day&type=before&count=-142&indicator=kline,ma,macd,kdj,boll,rsi,wr,bias,cci,psy'
 
-nginx version: nginx/1.10.3
-built by gcc 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)
-built with OpenSSL 1.1.0g  2 Nov 2017
-TLS SNI support enabled
-configure arguments:
+year = 'https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=SH000001&begin=1452513308085&end=1547121304259&period=day&type=before&indicator=kline'
 
---user=root
---group=root
---prefix=/usr/share/nginx
---sbin-path=/usr/sbin/nginx
---conf-path=/etc/nginx/nginx.conf
---error-log-path=/var/log/nginx/error.log
---http-log-path=/var/log/nginx/access.log
---pid-path=/var/run/nginx/nginx.pid
---lock-path=/var/lock/nginx.lock
---http-client-body-temp-path=/var/tmp/nginx/client
---http-proxy-temp-path=/var/tmp/nginx/proxy
---http-fastcgi-temp-path=/var/tmp/nginx/fcgi
---http-uwsgi-temp-path=/var/tmp/nginx/uwsgi
---with-http_v2_module
---with-http_ssl_module
---with-stream
---with-openssl=../openssl-1.1.0g
---with-pcre=../pcre-8.38
---with-pcre-jit
---with-zlib=../zlib-1.2.11
---with-http_realip_module
---with-http_gzip_static_module
---with-http_stub_status_module
---with-http_geoip_module
+# res = requests.get(year, headers=headers)
+# data = res.json()
+# column = data['data']['column']
+# items = data['data']['item'][-5:]
+#
+# print(column)
+# print(items)
+# 近三年数据
 
-"""
-
-
-# wq nginx config
-# 文件路径：/data/download/nginx-1.11.2
-"""
-nginx version: nginx/1.11.2
-built by gcc 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC)
-built with OpenSSL 1.0.2k  26 Jan 2017
-TLS SNI support enabled
-configure arguments:
---with-ld-opt=-Wl,
--rpath,/usr/local/lib/
---add-module=../ngx_devel_kit-0.3.0
---add-module=../lua-nginx-module-0.10.7
---with-openssl=../openssl
---with-http_v2_module
---with-http_ssl_module
---with-http_gzip_static_module
---with-http_stub_status_module
-
-
-
-./configure --prefix=/usr/local/nginx   --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
-
-
-"""
-
-
-
-# 135测试更新ninx，wq
-
-"""
-wget http://nginx.org/download/nginx-1.14.1.tar.gz
-tar -zxvf  nginx-1.14.1.tar.gz
-
-export LUAJIT_LIB=/usr/local/luajit/lib
-export LUAJIT_INC=/usr/local/luajit/include/luajit-2.0
-
-# 对openssl 重新编译？
-cd ../openssl
-
-更新 lua-nginx-module 包: git clone https://github.com/openresty/lua-nginx-module.git
-
-./configure --prefix=/usr/local/nginx  --with-ld-opt=-Wl,-rpath,/usr/local/lib --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module-0.10.7 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
-
-
-
-  nginx path prefix: "/usr/local/nginx"
-  nginx binary file: "/usr/local/nginx/sbin/nginx"
-  nginx modules path: "/usr/local/nginx/modules"
-  nginx configuration prefix: "/usr/local/nginx/conf"
-  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
-  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
-  nginx error log file: "/usr/local/nginx/logs/error.log"
-  nginx http access log file: "/usr/local/nginx/logs/access.log"
-  nginx http client request body temporary files: "client_body_temp"
-  nginx http proxy temporary files: "proxy_temp"
-  nginx http fastcgi temporary files: "fastcgi_temp"
-  nginx http uwsgi temporary files: "uwsgi_temp"
-  nginx http scgi temporary files: "scgi_temp"
-
-
-/etc/nginx/conf.d
-"""
-
-
-# 测试服务器 测试更新ninx， 药监单
-
-"""
-
-configure arguments: --user=root --group=root --prefix=/usr/local/nginx   --lock-path=/var/lock/nginx.lock --http-client-body-temp-path=/var/tmp/nginx/client --http-proxy-temp-path=/var/tmp/nginx/proxy --http-fastcgi-temp-path=/var/tmp/nginx/fcgi --http-uwsgi-temp-path=/var/tmp/nginx/uwsgi --with-http_v2_module --with-http_ssl_module --with-stream --with-openssl=../openssl-1.1.0g --with-pcre=../pcre-8.38 --with-pcre-jit --with-zlib=../zlib-1.2.11 --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_geoip_module
-
-
-
-  nginx path prefix: "/usr/local/nginx"
-  nginx binary file: "/usr/local/nginx/sbin/nginx"
-  nginx modules path: "/usr/local/nginx/modules"
-  nginx configuration prefix: "/usr/local/nginx/conf"
-  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
-  nginx pid file: "/var/run/nginx/nginx.pid"
-  nginx error log file: "/var/log/nginx/error.log"
-  nginx http access log file: "/var/log/nginx/access.log"
-  nginx http client request body temporary files: "/var/tmp/nginx/client"
-  nginx http proxy temporary files: "/var/tmp/nginx/proxy"
-  nginx http fastcgi temporary files: "/var/tmp/nginx/fcgi"
-  nginx http uwsgi temporary files: "/var/tmp/nginx/uwsgi"
-  nginx http scgi temporary files: "scgi_temp"
+column = ['timestamp', 'volume', 'open', 'high', 'low', 'close', 'chg', 'percent', 'turnoverrate']
+items = [[1546531200000, 16887766700, 2446.0193, 2515.316, 2440.9066, 2514.87, 50.51, 2.05, 0.61],
+         [1546790400000, 17730501000, 2528.6987, 2536.9775, 2515.5083, 2533.09, 18.22, 0.72, 0.63],
+         [1546876800000, 15809918100, 2530.3001, 2531.345, 2520.1648, 2526.46, -6.63, -0.26, 0.53],
+         [1546963200000, 19188793000, 2536.4173, 2574.4079, 2536.157, 2544.34, 17.88, 0.71, 0.69],
+         [1547049600000, 15987432600, 2543.8534, 2551.8257, 2531.6638, 2535.1, -9.24, -0.36, 0.57]]
 
 
 
 
 
 
-"""
-
-
-"""
-
-==== Installing LuaJIT 2.1.0-beta2 to /usr/local ====
-mkdir -p /usr/local/bin /usr/local/lib /usr/local/include/luajit-2.1 /usr/local/share/man/man1 /usr/local/lib/pkgconfig /usr/local/share/luajit-2.1.0-beta2/jit /usr/local/share/lua/5.1 /usr/local/lib/lua/5.1
-cd src && install -m 0755 luajit /usr/local/bin/luajit-2.1.0-beta2
-cd src && test -f libluajit.a && install -m 0644 libluajit.a /usr/local/lib/libluajit-5.1.a || :
-rm -f /usr/local/lib/libluajit-5.1.so.2.1.0 /usr/local/lib/libluajit-5.1.so /usr/local/lib/libluajit-5.1.so
-cd src && test -f libluajit.so && \
-  install -m 0755 libluajit.so /usr/local/lib/libluajit-5.1.so.2.1.0 && \
-  ldconfig -n /usr/local/lib && \
-  ln -sf libluajit-5.1.so.2.1.0 /usr/local/lib/libluajit-5.1.so && \
-  ln -sf libluajit-5.1.so.2.1.0 /usr/local/lib/libluajit-5.1.so || :
-cd etc && install -m 0644 luajit.1 /usr/local/share/man/man1
-cd etc && sed -e "s|^prefix=.*|prefix=/usr/local|" -e "s|^multilib=.*|multilib=lib|" luajit.pc > luajit.pc.tmp && \
-  install -m 0644 luajit.pc.tmp /usr/local/lib/pkgconfig/luajit.pc && \
-  rm -f luajit.pc.tmp
-cd src && install -m 0644 lua.h lualib.h lauxlib.h luaconf.h lua.hpp luajit.h /usr/local/include/luajit-2.1
-cd src/jit && install -m 0644 bc.lua bcsave.lua dump.lua p.lua v.lua zone.lua dis_x86.lua dis_x64.lua dis_arm.lua dis_ppc.lua dis_mips.lua dis_mipsel.lua vmdef.lua /usr/local/share/luajit-2.1.0-beta2/jit
-==== Successfully installed LuaJIT 2.1.0-beta2 to /usr/local ====
-
-Note: the development releases deliberately do NOT install a symlink for luajit
-You can do this now by running this command (with sudo):
-
-  ln -sf luajit-2.1.0-beta2 /usr/local/bin/luajit
-
-"""
-
-
-"""
-
-
-# export LUAJIT_LIB=/usr/local/luajit/lib
-# export LUAJIT_INC=/usr/local/luajit/include/luajit-2.0
-新版本 lua 测试
-
-
-export LUAJIT_LIB=/usr/local/lib
-export LUAJIT_INC=/usr/local/include/luajit-2.1
-
-./configure --with-ld-opt=-Wl,-rpath,/usr/local/lib/ --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module-0.10.7 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
-
-./configure --with-ld-opt=-Wl,-rpath,/usr/local/lib/ --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module-0.10.7 --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
-
-
-
-./configure --with-ld-opt=-Wl,-rpath,/usr/local/lib/ --add-module=../ngx_devel_kit-0.3.0 --add-module=../lua-nginx-module --with-openssl=../openssl --with-http_v2_module --with-http_ssl_module --with-http_gzip_static_module --with-http_stub_status_module
-"""
+# 日k
+# items = [[1546531200000, 16887766700, 2446.0193, 2515.316, 2440.9066, 2514.87, 50.51, 2.05, 0.61, 2484.302, 2500.415,
+#           2547.4005, 2568.3783, -30.7865, -35.7316, -9.8902, 2651.1515, 2443.6495, 2547.4005, 35.875, 23.0568, 61.5113,
+#           52.3266, 43.9336, 43.6385, 18.8068, 35.0925, 1.1355, 0.1596, -1.8695, -60.1842, 25.0, 30.5556],
+#          [1546790400000, 17730501000, 2528.6987, 2536.9775, 2515.5083, 2533.09, 18.22, 0.72, 0.63, 2494.302, 2500.097,
+#           2543.796, 2564.6337, -30.9632, -31.5246, -1.1229, 2644.2229, 2443.3691, 2543.796, 55.9012, 34.0049, 99.6936,
+#           59.3547, 48.0436, 45.5764, 4.0465, 4.0465, 1.6312, 1.0313, -1.07, 24.592, 33.3333, 29.1667],
+#          [1546876800000, 15809918100, 2530.3001, 2531.345, 2520.1648, 2526.46, -6.63, -0.26, 0.53, 2500.814, 2501.118,
+#           2539.8245, 2562.8663, -30.447, -28.3793, 4.1353, 2636.3204, 2443.3286, 2539.8245, 66.9516, 44.9871, 100.0,
+#           55.7649, 46.6835, 44.9263, 10.9476, 10.9476, 1.0721, 0.8443, -1.1224, 35.3693, 33.3333, 29.1667],
+#          [1546963200000, 19188793000, 2536.4173, 2574.4079, 2536.157, 2544.34, 17.88, 0.71, 0.69, 2516.624, 2502.851,
+#           2537.8125, 2561.8173, -29.1842, -24.1606, 10.0472, 2632.1456, 2443.4794, 2537.8125, 70.4602, 53.4781, 100.0,
+#           63.0057, 50.7775, 46.8166, 22.5226, 22.5226, 1.4462, 1.5307, -0.2247, 121.0933, 41.6667, 30.5556],
+#          [1547049600000, 15987432600, 2543.8534, 2551.8257, 2531.6638, 2535.1, -9.24, -0.36, 0.57, 2530.772, 2505.879,
+#           2534.863, 2560.498, -27.6083, -21.3185, 12.5794, 2625.5932, 2444.1328, 2534.863, 70.4922, 59.1495, 93.1776,
+#           57.1994, 48.6709, 45.9774, 29.4438, 29.4438, 0.6111, 1.0986, -0.4004, 94.9434, 41.6667, 33.3333]]
+#
+# """
+# timestamp:时间戳
+# volume:成交量
+# open:开盘
+# high:最高
+# low:最低
+# close:收盘
+# chg: 涨跌额
+# percent:涨跌幅
+# turnoverrate:换手率
+# """
+# column = ['timestamp', 'volume', 'open', 'high', 'low', 'close', 'chg', 'percent', 'turnoverrate']

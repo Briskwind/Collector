@@ -1,3 +1,4 @@
+import datetime
 from django.contrib import auth
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -9,6 +10,8 @@ from django.utils.html import strip_tags
 from django.views.decorators.csrf import csrf_protect
 from rest_framework.views import APIView
 
+from crm.models import Book
+from crm.serializers import BookSerializer
 from extensions.auth import get_or_create_user, login
 from extensions.sqlite_conn import get_one_user
 
@@ -38,6 +41,11 @@ class Home(APIView):
         else:
 
             login(request, user)
+            max_age = 1 * 3600
+
+            request.session.set_expiry(max_age)
+
+
             next_url = request.GET.get('next', '/crm/')
             return redirect(next_url)
 
@@ -69,3 +77,25 @@ class UserInfo(APIView):
         res = get_one_user(user_id)
 
         return HttpResponse(res)
+
+
+
+class JsonP(APIView):
+    """ JsonP test"""
+
+    serializer_class = BookSerializer
+
+    def get(self, request):
+        func = request.GET.get("func")
+
+        qs = Book.objects.filter()
+
+        res = self.serializer_class(qs, many=True).data
+
+        data = {
+            "total": qs.count(),
+            "rows": res
+        }
+
+
+        return HttpResponse('callback("{0}")'.format(data))

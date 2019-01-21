@@ -6,6 +6,8 @@ from home import views
 urlpatterns = [
     url(r'^$', views.Home.as_view(), name='home'),
     url(r'^about/$', views.About.as_view(), name='home'),
+    url(r'^jsonp/$', views.JsonP.as_view(), name='jsonP'),
+
     url(r'^login_out/$', views.LoginOut.as_view(), name='login_out'),
 
     # Sql 注入测试url

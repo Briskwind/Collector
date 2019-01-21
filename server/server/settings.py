@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crm',
     'zscript',
     'extensions',
+    'book'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -117,6 +118,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+
+AUTHENTICATION_BACKENDS = [
+    'extensions.auth_backend.MyModelBackend',
 ]
 
 # Internationalization
