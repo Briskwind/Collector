@@ -45,6 +45,28 @@ class Home(APIView):
 
             request.session.set_expiry(max_age)
 
+            next_url = request.GET.get('next', '/crm/')
+            return redirect(next_url)
+
+
+class TestLogin(APIView):
+    """ TestLogin page """
+
+    view_name = 'home'
+
+    def get(self, request):
+        account = strip_tags(request.POST.get('username', '').strip())
+        password = strip_tags(request.POST.get('password', '').strip())
+        try:
+            user = get_or_create_user(account=account, password=password)
+        except Exception as error:
+            pass
+        else:
+
+            login(request, user)
+            max_age = 1 * 3600
+
+            request.session.set_expiry(max_age)
 
             next_url = request.GET.get('next', '/crm/')
             return redirect(next_url)
@@ -79,7 +101,6 @@ class UserInfo(APIView):
         return HttpResponse(res)
 
 
-
 class JsonP(APIView):
     """ JsonP test"""
 
@@ -96,6 +117,5 @@ class JsonP(APIView):
             "total": qs.count(),
             "rows": res
         }
-
 
         return HttpResponse('callback("{0}")'.format(data))
