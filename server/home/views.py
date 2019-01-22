@@ -115,7 +115,7 @@ class JsonP(APIView):
         func = request.GET.get("func")
 
         # return data
-        qs = Book.objects.filter()
+        qs = Book.objects.filter().first()
         res = self.serializer_class(qs, many=True).data
         data = {
             "total": qs.count(),
