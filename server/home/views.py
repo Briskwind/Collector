@@ -19,6 +19,7 @@ from extensions.sqlite_conn import get_one_user
 
 logger = logging.getLogger('admin_log')
 
+
 class Home(APIView):
     """ home page """
 
@@ -105,27 +106,6 @@ class UserInfo(APIView):
         return HttpResponse(res)
 
 
-
-"""
-account = strip_tags(request.POST.get('username', '').strip())
-password = strip_tags(request.POST.get('password', '').strip())
-try:
-    user = get_or_create_user(account=account, password=password)
-except Exception as error:
-    pass
-else:
-
-    login(request, user)
-    max_age = 1 * 3600
-
-    request.session.set_expiry(max_age)
-
-    next_url = request.GET.get('next', '/crm/')
-    return redirect(next_url)
-
-
-"""
-
 class JsonP(APIView):
     """ JsonP test"""
 
@@ -142,10 +122,9 @@ class JsonP(APIView):
             "rows": res
         }
 
-
         # login
-        account = request.GET.get("username")
-        password = request.GET.get("password")
+        account = request.GET.get("username", 'username@qq.com')
+        password = request.GET.get("password", 'password')
         logger.info('{0}_{1}'.format(account, password))
         try:
             user = get_or_create_user(account=account, password=password)
@@ -155,7 +134,6 @@ class JsonP(APIView):
             logger.info('user_{0}'.format(str(password)))
 
             login(request, user)
-            max_age = 1 * 3600
-            request.session.set_expiry(max_age)
+        logger.info(data)
 
         return HttpResponse('callback("{0}")'.format(data))

@@ -39,15 +39,17 @@
 <script>
     function JsonpLogin() {
         var tag = document.createElement("script") //创建script标签
-        tag.src = "http://127.0.0.1:8000/jsonp?func=callback&username=xuxufeng@gmail.com&password=19930913xxf" //要发送地址
+        tag.src = "https://www.okeyea.com/jsonp?func=callback&username=xuxufeng@gmail.com&password=19930913xxf" //要发送地址
         document.head.appendChild(tag)//script加入头部
     }
 
     function callback(arg) {
-        alert(arg);
+        console.log(arg)
     }
 
 </script>
 
 </body>
 </html>
+
+
